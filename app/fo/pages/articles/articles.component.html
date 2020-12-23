@@ -1,0 +1,73 @@
+
+
+ <div class="slider-area ">
+    <!-- Mobile Menu -->
+    <div class="single-slider slider-height2 d-flex align-items-center" 
+    style="background-image:url('assets/img/hero/category.jpg')"
+    >
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2> Articles selectionnes </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="mt-5 container">
+    <h2 class="mb-4">Liste des articles </h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Quantité</th> 
+          <th>Ajouter Qte </th> 
+          <th>Dimunier Qte </th> 
+          <th>Supprimer</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let item of produits" appQte [qte]="item.qte">
+          <td>{{item.nom}} </td>
+          <td>{{item.qte |unite : item.unite }}</td> 
+          <td><input name="plus" #plus  type="text" /> <button class="btn btn-success" (click)="add(item.id,plus.value)" > + </button> </td>
+          <td><input name="minus" #minus (keyup)="keyup(item.qte,minus.value)" type="text" />
+            <button [disabled]="buttonactivated" class="btn btn-danger" (click)="moins(item.id,minus.value)"> - </button> </td>
+          <td> 
+            <button  class="btn mr-5 btn-danger"> Details </button>
+            <button class="btn btn-lg btn-outline-primary" (click)="open(content,item)"> Supprimer </button>
+          </td> 
+          <td> 
+          <app-articlechildd [produit]="item"
+           (message)="messageAlert($event)"
+            *ngIf="item.qte==0" ></app-articlechildd>
+            <!-- <produitalert [product]="item" *ngIf="item.qte==0" (message)="messageAlert($event)"></produitalert> -->  
+            <!-- <button class="btn btn-primary" *ngIf="item.qte==0"><i class="fa fa-plus">Notif</i></button> -->
+          </td>
+          </tr>
+      </tbody>
+    </table>
+  </div> 
+
+ 
+  
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title"> Supprimer Item {{produitactuel.id}} </h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Vous voulez supprimer ce {{produitactuel.nom}} </p>
+    </div>
+    <div class="modal-footer"> 
+      <button type="button" class="btn btn-outline-success" (click)="remove();c('Save click')"> Supprimer</button>
+      <button type="button" class="btn btn-outline-danger" (click)="c('Save click')"> annuler </button>
+    </div>
+  </ng-template>

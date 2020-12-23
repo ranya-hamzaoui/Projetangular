@@ -1,0 +1,121 @@
+
+    <div class="col-md-12">
+       
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead>                  
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Nom</th>
+                  <th>Email</th>
+                  <th>subject</th>
+                  <th style="width: 40px">message</th>
+                  <th colspan="3" class="text-center"> Actions </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of contacts | paginate: { itemsPerPage: 4, currentPage: p }">
+                  <td>#</td>
+                  <td>{{item.nom}}</td>
+                  <td>{{item.email}}</td>
+                  <td>{{item.subject}} </td> 
+                  <td>{{item.message}} </td> 
+                  <td> <button class="btn btn-success" (click)="view(details,item)"><i class="fa fa-file">View</i></button> </td>
+                  <td> <button class="btn btn-warning" (click)="edit(editmodal,item)" ><i class="fa fa-edit">Edit</i></button> </td>
+                  <td> <button class="btn btn-danger" (click)="delete(d,item)" ><i class="fa fa-trash">Delete</i></button> </td>
+                   </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer clearfix">
+
+            <pagination-controls (pageChange)="p==$event">
+
+            </pagination-controls>
+
+          </div>
+        </div>
+        <!-- /.card -->
+
+        
+        <!-- /.card -->
+    
+     
+
+        <ng-template #d let-c="close" let-d="dismiss">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>HVoulez vous supprimer ce Contact </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Annuler</button>
+              <button type="button" class="btn btn-outline-dark" (click)="deleteContact();c('Save click')">Save</button>
+            </div>
+          </ng-template>
+         
+
+       
+          <ng-template #details let-c="close" let-d="dismiss">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body"> 
+              <p> Nom :{{ContactDataEdit.nom}} </p> 
+              <p> Email :{{ContactDataEdit.email}} </p> 
+              <p> subject : {{ContactDataEdit.subject}} </p>
+              <p> message  : {{ContactDataEdit.message}} </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Fermer</button>
+            </div>
+          </ng-template> 
+
+          <ng-template #editmodal let-c="close" let-d="dismiss">
+            <form message="form">
+                <div class="card-body"> 
+
+                    <div class="form-group">
+                        <label for="exampleInputsubject1">Nom</label>
+                        <input name="nom" type="subject"  class="form-control"
+                         id="exampleInputsubject4" placeholder="nom" [(ngModel)]="ContactDataEdit.nom" >
+                      </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input name="email" type="text" 
+                    class="form-control" id="exampleInputEmail1" placeholder="Enter email" [(ngModel)]="ContactDataEdit.email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputsubject1">subject</label>
+                    <input name="subject" type="subject"  class="form-control"
+                     id="exampleInputsubject1" placeholder="subject"
+                      [(ngModel)]="ContactDataEdit.subject" >
+                  </div>
+               
+                  <div class="form-group">
+                    <label for="exampleInputsubject5">Message</label>
+                    <input name="message" type="subject"  class="form-control"
+                     id="exampleInputsubject5" placeholder="subject"
+                      [(ngModel)]="ContactDataEdit.message" >
+                  </div>
+                 </div>
+                <!-- /.card-body -->
+        
+                <div class="card-footer">
+                  <button  type="submit" (click)="update();c('Save click')" class="btn mr-5 btn-success"> Modifier </button>
+                  <button  type="submit" (click)="c('Save click')" class="btn btn-danger"> Annuler </button>
+                </div>
+              </form>
+         </ng-template>
+ 
+

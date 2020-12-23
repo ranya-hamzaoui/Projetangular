@@ -1,0 +1,120 @@
+
+ <div class="slider-area ">
+  <!-- Mobile Menu -->
+  <div class="single-slider slider-height2 d-flex align-items-center" 
+  style="background-image:url('assets/img/hero/category.jpg')"
+  >
+      <div class="container">
+          <div class="row">
+              <div class="col-xl-12">
+                  <div class="hero-cap text-center">
+                      <h2> Inscription </h2>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col col-md-6 mx-auto my-5 ">
+        <form [formGroup]="inscriptionuser"> 
+    
+            <div class="form-group">
+                <label for="exampleInputEmail1"> Fist Name </label>
+                <input type="text" formControlName="nom" class="form-control" id="exampleInputEmail1" 
+                aria-describedby="emailHelp" placeholder="Enter email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="exampleInputEmail1"> Last Name </label>
+                <input type="text" formControlName="prenom" 
+                class="form-control" id="exampleInputEmail1" 
+                aria-describedby="emailHelp" placeholder="Enter email">
+              </div> 
+        
+            <div class="form-group">
+              <label for="exampleInputEmail1"> Email address</label>
+              <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+        
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" formControlName="password"  class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+        
+           <div formGroupName="address" >
+            <div class="form-group">
+                <label for="exampleInputEmail1"> City</label>
+                <input type="text" formControlName="city" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              </div> 
+              <div class="form-group">
+                <label for="exampleInputEmail1">Adresse</label>
+                <input type="text" formControlName="adresse" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              </div> 
+              <div class="form-group">
+                <label for="exampleInputEmail1">Poste</label>
+                <input type="text" formControlName="poste" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              </div> 
+           </div> 
+          
+           <div class="form-group">
+            <label for="exampleInputimage"> image</label>
+            <input name="image"  (change)="handleFileInput($event.target.files)" type="file" 
+             class="form-control" 
+            id="exampleInputimage" 
+            placeholder="image" 
+            >
+          </div>  
+           <p> skills </p> 
+           <p>
+            <button type="button" (click)="addSkills()">Add</button>
+          </p>
+          <div formArrayName="skills">
+            <div *ngFor="let skill of skills.controls; let i=index">
+              <div [formGroupName]="i">
+                {{i}}
+                skill name :
+                <input type="text" formControlName="skill">
+                exp:
+                <input type="text" formControlName="exp">         
+                <button (click)="removeSkill(i)">Remove</button>                
+              </div>
+            </div>
+          </div>
+
+           <div formArrayName="hobbies"> 
+            <div class="d-flex">   
+            <h5> Hobbies </h5>
+             <button class="btn right btn-dark" (click)="addHobbies()"> 
+              <i class="fa fa-plus"> </i>
+              Add
+            </button>
+            </div> 
+            <div *ngFor="let alias of hobbies.controls; let i=index">
+              <!-- The repeated alias template -->
+              <label class="mt-3"> Hobbie: {{i}} 
+                   <input type="text" [formControlName]="i"> 
+                    <button class="btn ml-2 btn-danger" (click)="RemoveHobbies(i)">
+                      <i class="fa fa-trash"> </i></button>
+                </label>
+            </div>
+          </div>
+        
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div> 
+        
+            <div class="d-flex mx-auto">
+            <button type="submit" class="btn btn-primary" (click)="onsubmit()">Envoyer </button> 
+            <button type="reset"  (click)="onReset()" class="btn btn-danger ml-5"> Reset </button>
+
+            </div>
+          </form> 
+        
+          <!-- <p class="py-5 my-5"> {{inscriptionuser.value | json}} </p> 
+          <p> {{inscriptionuser.status}} </p>  -->
+        
+    </div>
+</div>

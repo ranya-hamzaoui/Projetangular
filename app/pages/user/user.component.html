@@ -1,0 +1,105 @@
+<div class="col-md-6">
+    <!-- general form elements -->
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title"> Ajouter utilisateur  </h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <form role="form" #userform="ngForm" (ngSubmit)="register(userform.value)">
+        <div class="card-body"> 
+
+          <div class="form-group">
+            <label for="exampleInputEmail1"> Name</label>
+            <input name="name" type="text"  
+            class="form-control" id="exampleInputEmail1" placeholder="Enter Name" ngModel>
+          </div> 
+
+          <div class="form-group">
+            <label for="exampleInputEmail1"> Email address</label>
+            <input name="email" type="text"  
+            class="form-control" id="exampleInputEmail1" placeholder="Enter email" ngModel>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1"> Password</label>
+            <input name="password" type="password"  class="form-control" id="exampleInputPassword1" placeholder="Password" ngModel>
+          </div>
+       
+         <div class="form-group">
+           <label for=""></label>
+           <select name="role" class="form-control" ngModel  >
+            <option> Choisissez Role </option> 
+            <option value="admin">Admin</option>
+             <option value="user">user</option>
+             <option></option>
+           </select>
+         </div>
+         </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+          <button  type="submit" class="btn btn-primary"> Ajouter </button>
+        </div>
+      </form>
+    </div>
+    <!-- /.card -->
+
+   
+
+       
+
+    <div class="col-md-12">
+       
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead>                  
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th> Name</th>
+                  <th>Email</th>
+                  <th>Password</th>
+                  <th style="width: 40px">Role</th>
+                  <th colspan="3" class="text-center"> Actions </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of users">
+                  <td>#</td>
+                  <td>{{item.name}}</td>
+                  <td>{{item.email}}</td>
+                  <td>{{item.password}} </td> 
+                  <td>{{item.role}} </td> 
+                  <td> <button class="btn btn-success" ><i class="fa fa-file">View</i></button> </td>
+                  <td> <button class="btn btn-warning"  ><i class="fa fa-edit">Edit</i></button> </td>
+                  <td> <button class="btn btn-danger"   ><i class="fa fa-trash">Delete</i></button> </td>
+                   </tr>
+                
+                 
+               
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer clearfix">
+            <ul class="pagination pagination-sm m-0 float-right">
+              <li class="page-item"><a class="page-link" href="#">«</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">»</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- /.card -->
+
+        
+        <!-- /.card -->
+    
+     
+
+
+       
+      
+
+    
+  </div>

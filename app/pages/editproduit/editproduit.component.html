@@ -1,0 +1,58 @@
+
+<div class="col-md-6">
+    <!-- general form elements -->
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title"> Modifier produit  </h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <form>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="exampleInputnom"> Nom </label>
+            <input  [(ngModel)]="editproduit.nom" name="nom" type="text"  
+            class="form-control" 
+            id="exampleInputnom"
+           >
+          </div>
+          <div class="form-group">
+            <label for="exampleInputprice"> Price </label>
+            <input  [(ngModel)]="editproduit.price" name="price" type="text"  
+            class="form-control"
+            id="exampleInputprice" 
+            >
+          </div> 
+
+          <div class="form-group">
+            <label for="exampleInputcategorie"> Categorie </label>
+            <input  [(ngModel)]="editproduit.categorie"
+            name="categorie" 
+            type="text" 
+             class="form-control" 
+            id="exampleInputcategorie" 
+            >
+          </div> 
+
+          <div class="form-group">
+            <label for="exampleInputPassword1"> Type </label>
+            <input 
+             [(ngModel)]="editproduit.type" 
+            name="type" type="text"  
+            class="form-control" 
+            id="exampleInputtype" 
+             placeholder="Type" 
+             >
+          </div>
+      
+         </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+            <button (click)="updateProduit()" class="btn btn-danger"> Modifier</button>
+            <button (click)="goBack()" class="btn ml-5 btn-primary"> Annuler </button>
+        </div>
+      </form>
+    </div>
+    <!-- /.card -->
+
